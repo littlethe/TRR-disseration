@@ -1,0 +1,130 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{5G: Promises and Reality\\
+{\footnotesize \textsuperscript{}}
+\thanks{}
+}
+
+\author{\IEEEauthorblockN{\textsuperscript{} Tung-te Lin}
+\IEEEauthorblockA{\textit{School of Computer Science} \\
+\textit{Trinity College Dublin}\\
+Dublin, Ireland \\
+tlin@tcd.ie}
+}
+
+\maketitle
+
+\begin{abstract}
+5G is a popular topic in these years, many countries are devoted to developing the 5G network, and some people expect that the 5G network could resolve more problems than the 4G network. This paper is going to compare the latency and data rate between the 4G network and the 5G network. Moreover, analyze the personal need and IoT need for the 5G network. Due to the unpredictable far future, and the 6G network would appear 10 years later, therefore, the range of the discussion here is merely the next 10 years.
+\end{abstract}
+
+\begin{IEEEkeywords}
+5G, 4G, IoT, latency, data rate
+\end{IEEEkeywords}
+
+\section{Introduction}
+The current development of 5G is limited. According to WORLDTIMEZONE, Only a few countries have 5G commercial networks on 12 Dec. 2019, including the USA, China, UK, and South Korea. South Korea is the first country that provides 5G commercial networks \cite{1}.
+
+The major differences between the 5G and 4G networks are latency and data rate. The latency of 5G is less than 1 ms, and the peak data rate is 20 GB (Gigabytes) per second. In contract, The latency of 4G is 10 ms, and the peak data rate is 1 GB per second \cite{2}. However, 5G has an obvious weakness, which is the coverage. The coverage of a 5G cell site is only about 1 kilometer, but a 4G cell tower could cover 70 kilometers \cite{3}. If the government tries to push the 5G network, it is necessary to build thousands of cell sites in many streets and corners in every city in terms of the small coverage in 5G. If the government does so, the cost will increase, on the other hand, upgrading from 2G/3G/4G to 5G is also a huge construction. The infrastructure spending of 5G would be 1.5 to 2 times more than 4G, but the cost of developing 5G is very hard to predict \cite{15}. In a report, the global cost of developing 5G would be 1.3 trillion USD in 7 years \cite{16}. 5G needs not only the high cost but also a long time. For those countries which are advanced, maybe that is not a big problem, but for backward countries, they could not have sufficient funding to support them to construct the 5G network.
+
+The question is, is 5G necessary for modern society? Here are 2 different areas to discuss it, the personal demand and IoT demand.
+
+\section{II.The personal demand for 5G}
+
+As for personal demand, the average data usage for a person is increasing every year gradually. The average data usage for each person in using smart-phones was 5.6 GB for one month in 2019, and it could be 8.9 GB in 2021 \cite{4} . Even though it is hard to predict personal usage in the future. According to the increasing speed of data usage, average personal data usage for a month ascends about 1.5 GB to 2 GB per year. Therefore, it would probably be around 20 GB in 2030. 
+
+If people only use the 4G network, then 4G is capable to provide 2,592,000 GB a month in theory (4G network offers 1 GB per second, 1 month has about 2,592,000 seconds), it is pretty enough to satisfy most people.
+
+However, it is just the theory. In the real situation, the 4G network is hard to reach 1 GB per second. Normally, it is only 2 to 50 MB per second in download speed, and 1 MB to 15 MB in upload speed. South Korean has an excellent 4G network, its average download and upload speeds were 52.4 MB and 15.1 MB per second respectively, and South Korea was the first place in download speed and second place in upload speed among 87 countries in the report from OPENSIGNAL \cite{5}.
+
+Hence, assume that the most countries could reach the current 4G quality in South Korea in the future, then people could be possible to use 135,820.8 GB in download (52.4 MB x 2,592,000 seconds) and 39,139.2 GB (15.1 MB x 2,592,000 seconds) in upload per month. Those numbers are still very enough for consumers for the next decade.
+
+About latency, some extreme or special users, such as professional game players require very low latency, but the problem is that the reaction of the human beings is not very fast if compare with the latency of current networks. According to the data collected from worldwide computer users by Human Benchmark \cite{6}, the reaction of most people is above 200 ms, the average is approximately 225 ms. Faker, who is one of the most excellent PC game players in the world, his reaction was 106 ms, and this record was the second-best of the ranking on this website, moreover, the best record was 100 ms at the moment \cite{7}.
+
+The qualities of networks could be very different in different countries, operators and test methods. Therefore taking Saudi Arabia as an example, the latency was from 57 ms to 680 ms in Saudi Arabia \cite{8}. The most important factor to cause this huge difference in the latency is different operators. If people choose the best operator, then the latency was only 86 to 94 ms during the working-day evening, otherwise, it would be 494 to 680.
+
+Regarding the latency in 5G, according to the survey from OPENSIGNAL \cite{9}, the latency of 5G was 34.9 ms in South Korea in 2019, which was very close to its 4G. The latency of its 4G was 37.4 to 38.3 ms at that time. Compare with the data rate, the 5G download speed was 111.8 MB per second in South Korea, it was obviously higher than its best 4G download speed, which was 75.8 MB per second.
+
+Here, assume that people just choose the best operator to use the 4G network, then the latency could be below 50 ms. In case they want to use the 4G network to play games, and their reaction is about 200 ms, then the total response time is 250 ms in using 4G. Also, assume that the 5G could reach 30 ms on average in the future, then the total response time may be 230 ms in using 5G, the results are almost the same. Basically, the human could not feel the difference between 4G and 5G in playing games. Even though the download speed in 5G is higher then 4G, but most normal people do not need higher download speed.
+
+For some extreme video viewers, they wish that they could watch videos immediately, maybe they are willing to pay for the 5G network, or clouding gaming service may require the 5G network \cite{10}. However, using wired network or Wi-Fi at home or indoor environment could resolve the huge download requirement if do not use 5G. It is not saying that 5G is useless in the next decade for the personal demand, maybe some citizens still need it, but it is not so important, or necessary for the majority.
+
+\section{The IoT demand for 5G}
+About IoT, that could be a complicated discussion, because the applications in IoT are quite various. Some applications require an extremely high data rate and low latency.
+
+For example, the urban camera system could make cities safer, but it may have thousands of cameras in every street even every corner in a city, it could generate tremendous video data. In this case, it is suitable to use 5G to transfer video for processing, because the data rate of old networks is not as high as the 5G network  \cite{11}. 
+
+Moreover, the low latency in the 5G network could be used to prevent accidents, AI could react or do a decision in 3 ms by using the 5G network \cite{12}. Thus, when workers have accidents or emergencies in factories, the system could protect them immediately. If the system just uses the 4G network, the reaction may be too slow to activate the devices to protect them.
+
+Another case, 5G network could be used in medical science \cite{13}, it is able to analyze passengers’ health situation in vehicles. If the health condition is bad, the system is able to inform nearby hospitals, taxi drives and the passengers themselves. In the meantime, the emergency siren will be activated. This design is not only for protecting passengers but also for other drivers and pedestrians.
+
+Other 5G applications include smart cars, education, wearable devices, biology, environment protection or social and individual safety. Furthermore, the 5G network is also a critical power to push a smart city and the IoT industry \cite{14}.
+
+If the IoT device tries to connect a far server or client by the 5G network, such as an overseas database, then the latency would be similar with the 4G network because the speed of light is fixed, the data can not be sent faster then light. If the device connects to a very close server or device, for instance, a server in the same city, then the latency could be very low, because the latency of 5G is only 1 ms in theory. Human beings can not notice the difference between 10 ms and 1 ms, even 30 ms and 1 ms, but the machine is capable to notice that. In addition, the data processed by 1 ms could be much more than 10 ms.
+
+However, 5G requires highly intensive cell sites, it is hard to be constructed in a wilderness, such as a forest or desert. Hence, 5G and 4G should be utilized at the same time. If the IoT device is in a forest, then it could use 4G, otherwise, it could use 5G in a city, the network should be changeable.
+
+If compare with the personal demand, the demand for the 5G network from IoT is more significant and practical. For the completed comparison between 4G and 5G, it is shown in Table \ref{tab:table1}.
+
+
+\begin{table}[hb!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+          & The 4G Network & The 5G Network\\
+        \hline
+         Cost & Medium & High \\
+        \hline
+        Data Rate & Medium & High \\
+        \hline
+        Latency & Medium & Low \\
+        \hline
+        Coverage & Wide & Narrow \\
+        \hline
+        Watching video & Suitable & Suitable \\
+        \hline
+        Countryside communication & Suitable & Unsuitable \\
+        \hline
+        Playing game & Suitable & Suitable \\
+        \hline
+        Camera systems & Normal & Suitable \\
+        \hline
+        Preventing accidents & Unsuitable & Suitable \\
+        \hline
+        Smart cars & Normal & Suitable \\
+        \hline
+        Medical science & Suitable & Suitable \\
+        \hline
+        Wilderness applications & Suitable & Unsuitable \\
+        \hline
+        Advanced countries & Suitable & Suitable \\
+        \hline
+        Backward countries & Suitable & Unsuitable \\
+        \hline
+    \end{tabular}
+    \caption{The comparison of 4G and 5G}
+    \label{tab:table1}
+\end{table}
+
+\section{IV.Conclusion}
+Overall, personal demand is more simple and easier to be satisfied by the 4G network. Nevertheless, the situation of IoT is quite complex and various, some IoT applications require extremely low latency and a high data rate. Therefore, the 5G network is still valuable and irreplaceable in the next decade.
+
+Meanwhile, the 5G network requires numerous cell sites, and not every country is wealthy to develop 5G. On the other hand, most IoT devices do not need a very low reaction and a super high download/upload speed, thus they could be also connected by the 4G network and run well. Hence, in the next decade, for the poor countries, keeping improving the 4G network to reach the current 4G performance in South Korea should be a better strategy than constructing a 5G network.
+
+After 10 years, the new generation network, which is the 6G network, would be commercialized, and it will have many new changes and new requirements for personal need or IoT applications in that period. Then the situation will be different from the current society.
+
+\bibliographystyle{ieeetr}
+\bibliography{test.bib}
+
+\end{document}

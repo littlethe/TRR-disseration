@@ -1,0 +1,344 @@
+\documentclass[english,a4paper,11pt,oneside,onecolumn]{book}
+
+
+\setlength{\topmargin}{-1cm}
+\setlength{\headsep}{.5cm}
+%\setlength{\footskip}{1.0cm}
+\setlength{\textheight}{24.7cm}
+\setlength{\textwidth}{17cm}
+\setlength{\evensidemargin}{-.5cm}
+\setlength{\oddsidemargin}{-.5cm}
+
+\usepackage{lastpage}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{slantsc}
+\usepackage{array}
+
+\usepackage{listings}
+\usepackage{minitoc}
+\usepackage{float}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\newcommand{\EE}{\mathrm{I\!E\!}}
+\newcommand{\bmat}[1]{\mbox{\boldmath $ #1 $}}
+\usepackage{fancyheadings}
+\usepackage{fancyhdr}
+
+\usepackage{shadethm}
+
+
+\usepackage{ifpdf}
+\usepackage{amsthm}
+
+\usepackage{lastpage}
+
+%% for inserting programming code
+\usepackage{minted}
+
+%%%%%%%%%%%%%%%
+
+\fancypagestyle{plain}{}
+
+\pagestyle{fancy}
+\lhead{\copyright Student Name}
+\rhead{Page \thepage /\pageref{LastPage}}
+%\chead{\thepage}
+\chead{\today}
+\lfoot{School of Computer Science \& Statistics}
+\rfoot{Trinity College Dublin, Ireland}
+\cfoot{}
+%%%%%%%%%%%%%%%
+
+                
+
+\ifpdf                                                                                           
+ \pdfcompresslevel=9
+
+\usepackage{color}
+
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\solution}[1]{{\color{red} #1}}
+
+ \usepackage[pdftex]{hyperref}                  
+  \hypersetup{backref,bookmarks=true,pdfpagemode=Fullscreen,linkcolor=black,colorlinks=true,urlcolor=blue}
+
+\pdfinfo{
+/Title ()
+/Author ()
+/Date (2016)
+/Subject ()
+/Keywords ()
+	}
+ \usepackage{graphicx}
+\graphicspath{{}}
+\DeclareGraphicsExtensions{.jpg,.tif,.pdf,.mps,.png}
+\else                                                                                            
+  \usepackage{graphicx}           
+\graphicspath{{}}
+\DeclareGraphicsExtensions{.eps}                                                               
+\fi                        
+
+\renewcommand{\baselinestretch}{1.5}
+
+\usepackage{fourier}
+
+\usepackage[scaled]{uarial}
+\renewcommand*\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+
+
+
+\begin{document}
+\renewcommand{\footrulewidth}{1pt}
+
+
+
+
+
+
+
+\begin{titlepage}
+	\centering
+	
+\includegraphics[width=.8\linewidth]{trinity-common-use.jpg}\par\vspace{2cm}
+% * <dahyotr@tcd.ie> 2018-02-02T15:45:10.514Z:
+%
+% ^.
+	\vspace{2cm}
+	{\huge\bfseries Title of my thesis\par}
+	\vspace{1cm}
+	{\scshape \par}
+	\vspace{2cm}
+	{\Large by Student Name \par}
+ \vspace{1cm}
+{\scshape 
+PhD transfer report \\  % change as appropriate
+in completion of the PhD structured programme \\
+School of Computer Science \& Statistics\\ 
+Trinity College Dublin, Ireland\\
+}
+\end{titlepage}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Declaration}
+
+I declare that this thesis has not been submitted as an exercise for a degree at this or
+any other university and it is entirely my own work.
+
+
+\vspace{1cm}
+
+I agree to deposit this thesis in the University’s open access institutional repository or
+allow the library to do so on my behalf, subject to Irish Copyright Legislation and
+Trinity College Library conditions of use and acknowledgement.
+
+
+\vspace{3cm}
+\begin{flushright}
+
+\begin{tabular}{l}
+% signature\\
+\hline
+Firstname FamilyName\\
+\end{tabular}
+
+\vspace{1cm}
+
+\today
+\end{flushright}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Forewords}
+
+This is an example  of a possible  template designed for TCD students for writing a report in \LaTeX written by  Prof R. Dahyot\footnote{\url{https://www.scss.tcd.ie/Rozenn.Dahyot/}}. 
+
+\chapter*{Acknowledgments}
+
+Thank you Mum \& Dad.
+
+\chapter*{Abstract}
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\chapter{Introduction} 
+
+\section{Figures}
+Figure \ref{fig:tcd}  shows TCD banner. It is best to use high quality image format (e.g. pdf instead of jpg) for best rendering of figures. 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=.5\linewidth]{trinity-common-use.jpg}
+\caption{Trinity banner}\label{fig:tcd}
+\end{center}
+\end{figure}
+
+Always discuss figures in the text: you have the inform the reader what he/she is to understand from these figures. 
+If figures have not been designed by you (i.e. are copied from somewhere else), indicate reference source in the caption (also check copyrights).
+
+
+
+\section{Tables}
+Table \ref{tab:pretty}
+ shows ...
+ \begin{table}[!h]
+\begin{center}
+\begin{tabular}{l|c|c}
+sports & team & individual \\
+\hline
+\hline
+basket ball & x & o\\
+\hline
+triathlon & x & x \\
+\hline
+\hline
+\end{tabular}
+\end{center}
+\caption{my pretty table} 
+\label{tab:pretty}
+\end{table}
+
+
+\section{Mathematics}
+Consider the variable $x \in \mathbb{R}$, 
+\begin{equation}
+f(x)=x^2+2 \label{eq:mylabel}
+\end{equation}
+Equation (\ref{eq:mylabel}) is a polynom of order 2.
+
+
+\section{Bibliography}
+
+Two excellent references for forecasting \cite{Goodwin2010,ST3010Dahyot2016}. 
+See *.bib file.
+
+
+\section{Programming code (Snipets)}
+The following can be used for inserting snippets of code:
+
+\begin{minted}[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+%bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]{python}
+import numpy as np
+ 
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+ 
+    #compute the bitwise xor matrix
+    M1 = bitxormatrix(genl1)
+    M2 = np.triu(bitxormatrix(genl2),1) 
+ 
+    for i in range(m-1):
+        for j in range(i+1, m):
+            [r,c] = np.where(M2 == M1[i,j])
+            for k in range(len(r)):
+                VT[(i)*n + r[k]] = 1;
+                VT[(i)*n + c[k]] = 1;
+                VT[(j)*n + r[k]] = 1;
+                VT[(j)*n + c[k]] = 1;
+ 
+                if M is None:
+                    M = np.copy(VT)
+                else:
+                    M = np.concatenate((M, VT), 1)
+ 
+                VT = np.zeros((n*m,1), int)
+ 
+    return M
+\end{minted}
+
+See \url{https://www.overleaf.com/learn/latex/Code\_Highlighting\_with\_minted} for more info on using  package \texttt{minted} for programming code with Overleaf.
+
+\section{Building your portfolio }
+
+When graduating with your BSc/BA, Dip,  MSc, PhD (etc.) it is good to have online examples of your past works (add-on to CV, or for having something to show during job interviews).
+Hence when doing your project (e.g. FYP, dissertation or PhD), you can think of supplementary materials as URL links e.g.:
+\begin{itemize}
+\item give a URL to your github repository (in the dissertation)  for submitting your project code. Alternatively supplementary material can be provided on USB key or CD when submitting the dissertation. Note that for publications of your research (e.g. to arXiv or conferences), publishing on github the programming code becomes the norm (check with your supervisor before doing so).
+\item  provide video demo of your work. Screen capture software as well as a standard camera on your mobile phone works fine to create a short video. These video demos can be posted on standard website like youtube or vimeo.
+\end{itemize}
+
+
+
+%%%%%%%%%
+\chapter{State of the Art}
+\label{sec:soa}
+
+
+Sections \ref{sec:int1} and \ref{sec:dl} are...
+
+\section{Introduction}
+\label{sec:int1}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+%%%%%
+\section{Deep Learning}
+\label{sec:dl}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+\subsection{ANN}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+
+\subsubsection{ANN subsubsection}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+\paragraph{ANN paragraph.}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+
+\subparagraph{ANN subparagraph}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+\subsection{CNN}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+%%%%%%%%%%%
+\section{Computational aspect to deep learning}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+\section{Discussion}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+%%%
+\chapter{Work to date}
+\label{sec:wtd}
+
+
+%%%
+\chapter{Future work}
+\label{sec:fw}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{chapter}{Bibliography}
+\nocite{}
+\bibliographystyle{plain}
+\bibliography{ReferenceList}
+
+\appendix
+\chapter{my appendix}
+\chapter{my other appendix}
+
+\newpage
+
+\end{document}
