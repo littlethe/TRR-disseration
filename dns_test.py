@@ -4,7 +4,7 @@ from datetime import datetime
 import csv
 from os import path
 import time
-
+import sys
 from urllib.request import *
 import urllib
 import json
@@ -28,6 +28,24 @@ dnsProviderDict = {'1':{'short':'Local',        'ip':'192.168.0.130',   'full':'
 filenameDict = {'statistic':'statistic.csv',
                 'World':'top500Domains.csv',
                 'Ireland':'top50Ireland.csv'}
+
+infoDict = {'Filename':'','Note':'','Domain Kind':'','Query Interval':0,'Query Type':'','Query Method':'',
+    'DNS Provider':'','Query Number':0,'Start Time':'','End Time':'','Query Duration':0,
+    'Total Success':0,'Total NXDomain':0,'Total NoAnswer':0,'Total Timeout':0,                
+    'Success 0-0.1':0,'Success 0.1-1':0,'Success 1-5':0,'Success >5':0,
+    'NXDomain 0-0.1':0,'NXDomain 0.1-1':0,'NXDomain 1-5':0,'NXDomain >5':0,
+    'NoAnswer 0-0.1':0,'NoAnswer 0.1-1':0,'NoAnswer 1-5':0, 'NoAnswer >5':0,
+    'Timeout 0-0.1':0,'Timeout 0.1-1':0,'Timeout 1-5':0, 'Timeout >5':0,
+    'Average Success Duration':0,'Average NXDomain Duration':0,'Average NoAnswer Duration':0,'Average Timeout Duration':0,
+    'Fastest Success Duration':0,'Fastest Success Domain':'',
+    'Fastest NXDomain Duration':0,'Fastest NXDomain Domain':'',
+    'Fastest NoAnswer Duration':0,'Fastest NoAnswer Domain':'',
+    'Fastest Timeout Duration':0,'Fastest Timeout Domain':'',
+    'Latest Success Duration':0,'Latest Success Domain':'',
+    'Latest NXDomain Duration':0,'Latest NXDomain Domain':'',
+    'Latest NoAnswer Duration':0,'Latest NoAnswer Domain':'',
+    'Latest Timeout Duration':0,'Latest Timeout Domain':''
+}
 
 class QueryObject:
     def __init__(self,domain,responses,queryType,queryMethod,dnsFull,dohCode):
@@ -135,26 +153,43 @@ def setDnsFull(queryMethod,ip,name):
         dnsFull = name
     return dnsFull
 
+def detectFile(filename):
+    if not (path.exists(filename)):
+        print('Please put the csv file "'+filename+'" in the same dirctory.')
+        sys.exit(1)
+
 if __name__ == '__main__':
+
+    fields = infoDict.keys()
+    statFn = filenameDict['statistic']
+    if not (path.exists(statFn)):
+        f = open(statFn,'w')
+        f.write(','.join(fields)+'\n');
+        f.close()
+    try:
+        statFile = open(statFn,'a',newline='')
+    except:
+        print('Error,the file "'+statFn+'" is opening, please close it.')
+        sys.exit(1)
+
+    detectFile(filenameDict['Ireland'])
+    detectFile(filenameDict['World'])
     
     domainKind = domainKindDict[inputPara('Choose the kind of domain:\n1:local domain\n2:fake domains\n3:top 50 Ireland domains(default)\n4:top 500 world domains','3')]
     interval = intervalDict[inputPara('Query interval(second)?(0:no interval(default),1:0.1,2:0.01,3:0.001,4:0.0001)','0')]
     queryType = queryTypeDict[inputPara('Query type?(1:A(default),2:AAAA,3:CNAME,4:MX)','1')]
     queryMethod = queryMethodDict[inputPara('Query Method?(1:DOH Wireformat(default),2:DOH JSON,3:Tradition)','1')]
     dns = dnsProviderDict[inputPara('DNS Server?(1:local(default),2.cloudflare,3.google)','1')]
-    queryNumber = int(inputPara('Query number?(default:500)',500))
+    queryNumber = int(inputPara('Query number?(default:50)',50))
+    note = inputPara('Note?(optional, default is no blank)','')
 
-    infoDict = {'Filename':'','Domain Kind':domainKind,'Query Interval':interval,'Query Type':queryType,'Query Method':queryMethod,
-        'DNS Provider':dns['short'],'Query Number':queryNumber,'Start Time':'','End Time':'','Query Duration':0,
-        'Total Success':0,'Total NXDomain':0,'Total NoAnswer':0,'Total Timeout':0,                
-        'Success 0-0.1':0,'Success 0.1-1':0,'Success 1-5':0,'Success >5':0,
-        'NXDomain 0-0.1':0,'NXDomain 0.1-1':0,'NXDomain 1-5':0,'NXDomain >5':0,
-        'NoAnswer 0-0.1':0,'NoAnswer 0.1-1':0,'NoAnswer 1-5':0, 'NoAnswer >5':0,
-        'Timeout 0-0.1':0,'Timeout 0.1-1':0,'Timeout 1-5':0, 'Timeout >5':0,
-        'Average Success':0,'Average NXDomain':0,'Average NoAnswer':0,'Average Timeout':0,
-        'Fastest Success':0,'Fastest Success Domain':'','Fastest NXDomain':0,'Fastest NXDomain Domain':'','Fastest NoAnswer':0,'Fastest NoAnswer Domain':'','Fastest Timeout':0,'Fastest Timeout Domain':'',
-        'Latest Success':0,'Latest Success Domain':'','Latest NXDomain':0,'Latest NXDomain Domain':'','Latest NoAnswer':0,'Latest NoAnswer Domain':'','Latest Timeout':0,'Latest Timeout Domain':''
-    }
+    infoDict['Domain Kind'] = domainKind
+    infoDict['Note'] = note
+    infoDict['Query Interval'] = interval
+    infoDict['Query Type'] = queryType
+    infoDict['Query Method'] = queryMethod
+    infoDict['DNS Provider'] = dns['short']
+    infoDict['Query Number'] = queryNumber
     
     responses = []
     threads = []
@@ -210,10 +245,10 @@ if __name__ == '__main__':
         thread.join()
 
     distributions = {'Success':DistributionObject(),'Timeout':DistributionObject(),'NoAnswer':DistributionObject(),'NXDomain':DistributionObject()}
-    outputName = domainKind+'_'+queryType+'_'+queryMethod+'_'+dns['short']+'_'+str(queryNumber)+'_'+str(interval).replace('.','')+'_'+endTime.strftime('%Y-%m-%d-%H-%M-%S')
-    infoDict['Filename'] = outputName
-    wf = open(outputName+'.csv','w',newline='')
+    outputFn = domainKind+'_'+note+'_'+queryType+'_'+queryMethod+'_'+dns['short']+'_'+str(queryNumber)+'_'+str(interval).replace('.','')+'_'+endTime.strftime('%Y-%m-%d-%H-%M-%S')+'.csv'
+    infoDict['Filename'] = outputFn
     
+    wf = open(outputFn,'w',newline='')
     with wf:
         writer = csv.DictWriter(wf,delimiter=',',fieldnames=responses[0].__dict__.keys())
         writer.writeheader()
@@ -253,21 +288,15 @@ if __name__ == '__main__':
         infoDict[category+' 0.1-1'] = dist.in1
         infoDict[category+' 1-5'] = dist.in5
         infoDict[category+' >5'] = dist.over5
-        infoDict['Fastest '+category] = dist.fastest
+        infoDict['Fastest '+category+' Duration'] = dist.fastest
         infoDict['Fastest '+category+' Domain'] = dist.fastestDomain
-        infoDict['Latest '+category] = dist.latest
+        infoDict['Latest '+category+' Duration'] = dist.latest
         infoDict['Latest '+category+' Domain'] = dist.latestDomain
-        infoDict['Average '+category] = 0 if(dist.total==0) else dist.average/dist.total
+        infoDict['Average '+category+' Duration'] = 0 if(dist.total==0) else dist.average/dist.total
 
-    fields = infoDict.keys()
-    statisticFilename = filenameDict['statistic']
-    if not (path.exists(statisticFilename)):
-        f = open(statisticFilename,'w')
-        f.write(','.join(fields)+'\n');
-        f.close()
-
-    with open(statisticFilename,'a',newline='') as sta:
-        writer = csv.DictWriter(sta,delimiter=',',fieldnames=fields)
+    with statFile:
+        writer = csv.DictWriter(statFile,delimiter=',',fieldnames=fields)
         writer.writerow(infoDict)
-
-    print('The statistic has been generated.')
+        
+    print('The responses of all domain names have been recorded in \n'+ outputFn+'.')
+    print('The statistic has been generated in '+statFn+'.')
